@@ -2,6 +2,13 @@
     font-family: VR_OCD; 
     src: url(VCR_OSD_MONO_1.001.ttf);
 }
+
+   body{
+      background-image: url("Logo_Background.png");
+	background-repeat: no-repeat;
+  background-size: cover;
+   }
+
  @supports (-webkit-text-stroke: 3px black) {
 h2 {
     font-family: VR_OCD;
@@ -53,11 +60,7 @@ img {
   border: 10px solid #ffffff;
 border-radius: 10px;	
 }
-   body{
-      background-image: url("file:///Users/slm00112/Desktop/WP_DSN/INSERT%20NAME%20STUDIOS%20REVISION/Logo_Background.png");
-	background-repeat: no-repeat;
-  background-size: cover;
-   }
+
 }
 
 
