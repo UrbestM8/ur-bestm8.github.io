@@ -56,6 +56,15 @@ box-shadow: none;
 border-radius: 0px;
 }
 
+	  .pfp img { 
+-webkit-box-shadow: none; /* Safari */ 
+box-shadow: none;
+-moz-border-radius: 0px;
+-khtml-border-radius: 0px;
+-webkit-border-radius: 0px;
+border-radius: 0px;
+}
+	 
 img {
   border: 10px solid #ffffff;
 border-radius: 10px;	
