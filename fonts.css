@@ -5,8 +5,7 @@
 
    body{
       background-image: url("TRIUNITY_LightBG.png");
-	background-repeat: no-repeat;
-  background-size: cover;
+	background-repeat: repeat;
 	     background-attachment: fixed;
   background-position: center;
    }
