@@ -1,128 +1,122 @@
-<!doctype html>
-<html>
-
-    
-
-<style>
-
-
-</style>
-
-<title>Home - TRIUNITY GAMES</title>
-
-<link rel="icon" href="Triunityfavicon1.png">
-
-    <div class="title">
-<center><img  style="border:none" src="TRIUNITY_TEXT.png" width= 700px length= 800px></center>
-</div>
- <center><h3><a href="wip.html" >LOGIN // CREATE ACCOUNT</a></h3></center>
-    <center>
-    <div class="pfp">
-<img src="NoAccount.png" alt="Avatar" class="avatar">
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Sneak Game</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+  <body>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">Sneak Game</div>
+      </div>
     </div>
-    </center>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content=
-          "width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="fonts.css">
-</head>
+    <script>
+
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var warningBanner = document.querySelector("#unity-warning");
+
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/SneakGamGe.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/SneakGamGe.data",
+        frameworkUrl: buildUrl + "/SneakGamGe.framework.js",
+        codeUrl: buildUrl + "/SneakGamGe.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "Sneak Game",
+        productVersion: "0.1",
+        showBanner: unityShowBanner,
+      };
+
+      // By default, Unity keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        container.className = "unity-mobile";
+        canvas.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
 
 
+      } else {
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
 
+        canvas.style.width = "960px";
+        canvas.style.height = "600px";
+      }
 
-<center><u><h2>ANNOUNCEMENTS</h2></u></center>
+      loadingBar.style.display = "block";
 
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+              }).then((unityInstance) => {
+                loadingBar.style.display = "none";
+                fullscreenButton.onclick = () => {
+                  unityInstance.SetFullscreen(1);
+                };
+              }).catch((message) => {
+                alert(message);
+              });
+            };
 
+      document.body.appendChild(script);
 
-
-
-
-<center>
-<body>
-<h3>
-- THIS WEBSITE WILL REMAIN UP UNTIL WE MAKE A SEPERATE WEBSITE WITH OUR OWN DOMAIN.
-<br>
-- ALL PROJECTS GOING FORWARD, WILL BE ON STEAM.
-<br>
-- WATCH THE TRAILER TO OUR FIRST STEAM GAME!
-<br>
-- DEMO WILL BE AVAILABLE HERE UPON RELEASE!
-</h3>
-</body>
-</center>
-    <center>
-<iframe width="840" height="630"
-src="https://www.youtube.com/embed/ZnzAlSV_WMc">
-</iframe>
-</center>
-<center><u><h2>NEWEST RELEASES</h2></u></center>
-<center>
-<table>
- <tr> 
-    <th> <h5>Sneak Game</h5> </th>
-         <th> <h5>Plinko</h5> </th>
-      <th> <h5>Submarine</h5> </th>
-  </tr>
-  <tr>
-      <td> <center> <a href="sneakgame.html"<center><img src="sneak.png" width= 200px length= 300px></a> </center> </td>
-       <td><center><a href="plinko.html"><img src="MockLogo2.png" width= 200px length= 300px></a> </center></td>
-      <td><center> <a href="submarineGame.html"><img src="MockLogo.png" width= 200px length= 300px></a> </center> </td>
-  </tr>
- <tr> 
-              <td>   <center>  <h3>Short stealth game for college class</h3> </center> </td>
-         <td> <center>   <h3>Short game that also happens to have been made for college class</h3> </center> </td>
-         <td>  <center>  <h3>Short game made for college class</h3> </center> </td>
- </tr>
-</table>
-
-
-
-  
-
-
-
-
-
-</center>
-
-<center><u><h2>FULL CATALOG</h2></u></center>
-<center>
-<table>
-
-<tr>
-<th> <center><h3><a href="submarineGame.html">Submarine</a></h3></center></th>
-<th> <center><h3><a href="plinko.html">Plinko</a></h3></center></th>
-<th> <center><h3><a href="sneakgame.html">Sneak Game</a></h3></center></th>
-
-</tr>
-
-<tr>
-
-<th> <center><h3><a href="firstgame.html" >Bean Game</a></h3></center> </th>
-<th><center><h3><a href="roketgam.html" >Roket Gam</a></h3></center> </th>
-<th><center><h3><a href="fpsmicrogame.html" >FPS Microgame</a></h3></center> </th>
-<th><center><h3><a href="wavecombat.html" >Wave Combat</a></h3></center> </th>
-<th> <center><h3><a href="navmc.html" >Not a very merry christmas</a></h3></center> </th>
-
-</tr>
-<tr>
-<th> <center><h3><a href="snake.html" >HTML SNAKE</a></h3></center> </th>
-<th><center><h3><a href="tetris.html" >HTML TETRIS</a></h3></center> </th>
-<th><center><h3><a href="cosmicsharpshooter.html" >COSMIC SHARPSHOOTER</a></h3></center> </th>
-<th><center><h3><a href="beangame2.html" >BEAN GAME 2</a></h3></center> </th> 
-<th> <center><h3><a href="1920s.html" >1920</a></h3></center> </th> 
-</tr>
-
-
-</table>
-</center>
-
-
+    </script>
+  </body>
 </html>
-
-
-
-
-
-
